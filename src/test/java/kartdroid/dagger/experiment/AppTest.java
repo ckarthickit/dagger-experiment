@@ -4,6 +4,7 @@
 package kartdroid.dagger.experiment;
 
 import kartdroid.dagger.experiment.di.DaggerAppComponent;
+import kartdroid.dagger.experiment.di.DataProvider;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AppTest {
     @Test
     void appHasAGreeting() {
-        App classUnderTest = DaggerAppComponent.create().provideApp();
+        App classUnderTest = DaggerAppComponent.builder().dataProvider(new DataProvider()).build().provideApp();
         assertAll(classUnderTest::displayGreeting, classUnderTest::pingSomeone);
     }
 }

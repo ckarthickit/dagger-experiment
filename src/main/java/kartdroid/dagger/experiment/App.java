@@ -4,6 +4,7 @@
 package kartdroid.dagger.experiment;
 
 import kartdroid.dagger.experiment.di.DaggerAppComponent;
+import kartdroid.dagger.experiment.di.DataProvider;
 import kartdroid.dagger.experiment.logging.Logger;
 import kartdroid.dagger.experiment.network.NetworkClient;
 
@@ -33,7 +34,7 @@ public class App {
 
 
     public static void main(String[] args) {
-        App myApp = DaggerAppComponent.create().provideApp();
+        App myApp = DaggerAppComponent.builder().dataProvider(new DataProvider()).build().provideApp();
         myApp.displayGreeting();
         myApp.pingSomeone();
     }

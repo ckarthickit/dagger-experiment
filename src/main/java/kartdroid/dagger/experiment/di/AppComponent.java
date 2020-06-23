@@ -7,7 +7,7 @@ import kartdroid.dagger.experiment.di.module.NetworkingModule;
 import kartdroid.dagger.experiment.di.scopes.PerApp;
 
 @PerApp
-@Component(modules = {LoggingModule.class, NetworkingModule.class})
+@Component(modules = {LoggingModule.class, NetworkingModule.class}, dependencies = {DataProvider.class})
 public interface AppComponent {
     App provideApp();
 }
