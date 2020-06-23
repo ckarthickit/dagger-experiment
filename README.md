@@ -22,3 +22,10 @@
     > Provide Methods can be "static" if they don't depend on the state/members of a Module.
 
 - `Binds Method` should be preferred when we want to bind an **implementation** to an **interface** dependency.
+
+- `Injecting Values @ Runtime` to our Dependencies
+    1. We can pass runtime values to dependencies via the `Module`s that they are **Provided** in.   
+        - Pass the runtime value to **`Module` constructor** and store it as a member of the Module
+        - Use the member variable in `@Provides` methods, while instantiating the dependency.
+        > Please note that a **`Module` with custom constructor** must be passed explicitly to corresponding `Components` builder method
+          while instantiating the component.
