@@ -20,3 +20,5 @@
 - `Provider Methods` should be preferred when we are injecting `third-party` classes
     - Provider Methods **CAN ONLY BE** defined in `Module`, and the corresponding `Module` should be mapped to `Component`.
     > Provide Methods can be "static" if they don't depend on the state/members of a Module.
+
+- `Binds Method` should be preferred when we want to bind an **implementation** to an **interface** dependency.
