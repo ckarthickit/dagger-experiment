@@ -37,7 +37,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = "kartdroid.dagger.experiment.ex2.App"
+    mainClassName = "kartdroid.dagger.experiment.ex3.App"
 }
 
 val test by tasks.getting(Test::class) {
