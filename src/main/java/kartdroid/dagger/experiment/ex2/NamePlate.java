@@ -2,9 +2,8 @@ package kartdroid.dagger.experiment.ex2;
 
 import javax.inject.Inject;
 
-public class Engine {
+public class NamePlate {
     @Inject
-    public Engine() {
-
+    public NamePlate() {
     }
 }
