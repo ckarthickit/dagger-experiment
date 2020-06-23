@@ -29,3 +29,28 @@
         - Use the member variable in `@Provides` methods, while instantiating the dependency.
         > Please note that a **`Module` with custom constructor** must be passed explicitly to corresponding `Components` builder method
           while instantiating the component.
+    
+    2. Bind a `component` instance with a configuration value.
+        - Marking a **method** on `@Component.Builder` (or) `@Component.Factory` as `@BindsInstance` and pass the **configuration object**.
+            ```java
+                @Component.Builder
+                interface Builder {
+                    @BindsInstance
+                    Builder horsePower(int horsePower); //horsePower is the configuration object here.
+                    CarComponent build();
+                }
+            ```
+        - Now each instance of the `Component` will be **bound to the passed configuration value**, and the same would be used on dependency injection.
+        
+- Binding `more than 1 instance` for a particular `type`
+    - Using `@Named` annotation on the configuration parameter. (which is a `@Qualifier` annotations)
+        ```java
+          @Component.Builder
+            interface Builder {
+              @BindsInstance
+              Builder horsePower(@Named("horsePower") int horsePower);
+              @BindsInstance
+              Builder engineCapacity(@Named("engineCapacity") int engineCapacity);
+              CarComponent build();    
+            }
+        ```
