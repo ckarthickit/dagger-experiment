@@ -3,9 +3,11 @@
  */
 package kartdroid.dagger.experiment;
 
-import kartdroid.dagger.experiment.di.DaggerAppComponent;
-import kartdroid.dagger.experiment.di.DataProvider;
-import kartdroid.dagger.experiment.di.module.ManuallyInjectedProviderModule;
+import kartdroid.dagger.experiment.ex1.App;
+import kartdroid.dagger.experiment.ex1.ProvidedDependency;
+import kartdroid.dagger.experiment.ex1.di.DaggerAppComponent;
+import kartdroid.dagger.experiment.ex1.di.DataProvider;
+import kartdroid.dagger.experiment.ex1.di.module.ManuallyInjectedProviderModule;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

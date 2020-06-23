@@ -1,8 +1,8 @@
-package kartdroid.dagger.experiment.di.module;
+package kartdroid.dagger.experiment.ex1.di.module;
 
 import dagger.Module;
 import dagger.Provides;
-import kartdroid.dagger.experiment.ProvidedDependency;
+import kartdroid.dagger.experiment.ex1.ProvidedDependency;
 
 /**
  * A Module which Provides something that is injected at runtime manually.

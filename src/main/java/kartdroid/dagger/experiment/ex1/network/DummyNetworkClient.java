@@ -1,4 +1,4 @@
-package kartdroid.dagger.experiment.network;
+package kartdroid.dagger.experiment.ex1.network;
 
 
 import javax.inject.Inject;

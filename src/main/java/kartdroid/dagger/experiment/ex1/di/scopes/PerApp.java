@@ -1,4 +1,4 @@
-package kartdroid.dagger.experiment.di.scopes;
+package kartdroid.dagger.experiment.ex1.di.scopes;
 
 import javax.inject.Scope;
 import java.lang.annotation.Documented;

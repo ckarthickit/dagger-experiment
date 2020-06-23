@@ -1,9 +1,9 @@
-package kartdroid.dagger.experiment.di.module;
+package kartdroid.dagger.experiment.ex1.di.module;
 
 import dagger.Binds;
 import dagger.Module;
-import kartdroid.dagger.experiment.network.DummyNetworkClient;
-import kartdroid.dagger.experiment.network.NetworkClient;
+import kartdroid.dagger.experiment.ex1.network.DummyNetworkClient;
+import kartdroid.dagger.experiment.ex1.network.NetworkClient;
 
 @Module
 public abstract class NetworkingModule {

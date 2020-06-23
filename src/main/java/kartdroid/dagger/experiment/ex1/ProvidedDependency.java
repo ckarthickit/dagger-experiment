@@ -1,6 +1,6 @@
-package kartdroid.dagger.experiment;
+package kartdroid.dagger.experiment.ex1;
 
-import kartdroid.dagger.experiment.logging.Logger;
+import kartdroid.dagger.experiment.ex1.logging.Logger;
 
 import javax.inject.Inject;
 

@@ -1,6 +1,6 @@
-package kartdroid.dagger.experiment.logging;
+package kartdroid.dagger.experiment.ex1.logging;
 
-import kartdroid.dagger.experiment.di.scopes.PerApp;
+import kartdroid.dagger.experiment.ex1.di.scopes.PerApp;
 
 import javax.inject.Inject;
 
