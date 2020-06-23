@@ -3,8 +3,10 @@
  */
 package kartdroid.dagger.experiment;
 
+import kartdroid.dagger.experiment.di.AppComponent;
 import kartdroid.dagger.experiment.di.DaggerAppComponent;
 import kartdroid.dagger.experiment.di.DataProvider;
+import kartdroid.dagger.experiment.di.module.ManuallyInjectedProviderModule;
 import kartdroid.dagger.experiment.logging.Logger;
 import kartdroid.dagger.experiment.network.NetworkClient;
 
@@ -14,11 +16,13 @@ import java.util.Objects;
 public class App {
     private final Logger logger;
     private final NetworkClient networkClient;
+    private final ProvidedDependency providedDependency;
 
     @Inject
-    App(Logger logger, NetworkClient networkClient) {
+    App(Logger logger, NetworkClient networkClient, ProvidedDependency providedDependency) {
         this.logger = logger;
         this.networkClient = networkClient;
+        this.providedDependency = providedDependency;
     }
 
     public void displayGreeting() {
@@ -34,8 +38,15 @@ public class App {
 
 
     public static void main(String[] args) {
-        App myApp = DaggerAppComponent.builder().dataProvider(new DataProvider()).build().provideApp();
+        AppComponent myAppComponent = DaggerAppComponent.builder()
+                .manuallyInjectedProviderModule(new ManuallyInjectedProviderModule(new ProvidedDependency()))
+                .dataProvider(new DataProvider())
+                .build();
+        App myApp =  myAppComponent.provideApp();
         myApp.displayGreeting();
         myApp.pingSomeone();
+        System.out.println("providedDependency.logger= " + myApp.providedDependency.logger);
+        myAppComponent.inject(myApp.providedDependency);
+        System.out.println("providedDependency.logger= " + myApp.providedDependency.logger);
     }
 }

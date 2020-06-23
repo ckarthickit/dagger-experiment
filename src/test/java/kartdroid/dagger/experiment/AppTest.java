@@ -5,6 +5,7 @@ package kartdroid.dagger.experiment;
 
 import kartdroid.dagger.experiment.di.DaggerAppComponent;
 import kartdroid.dagger.experiment.di.DataProvider;
+import kartdroid.dagger.experiment.di.module.ManuallyInjectedProviderModule;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class AppTest {
     @Test
     void appHasAGreeting() {
-        App classUnderTest = DaggerAppComponent.builder().dataProvider(new DataProvider()).build().provideApp();
+        App classUnderTest = DaggerAppComponent.builder()
+                .manuallyInjectedProviderModule(new ManuallyInjectedProviderModule(new ProvidedDependency()))
+                .dataProvider(new DataProvider())
+                .build().provideApp();
         assertAll(classUnderTest::displayGreeting, classUnderTest::pingSomeone);
     }
 }
