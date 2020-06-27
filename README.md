@@ -42,7 +42,7 @@
             ```
         - Now each instance of the `Component` will be **bound to the passed configuration value**, and the same would be used on dependency injection.
         
-- Binding `more than 1 instance` for a particular `type`
+- Binding `more than 1 instance` for a particular `type` **(Add Qualifier)**
     - Using `@Named` annotation on the configuration parameter. (which is a `@Qualifier` annotations)
         ```java
           @Component.Builder
@@ -54,3 +54,9 @@
               CarComponent build();    
             }
         ```
+- Scoping a dependency instance creation per Component **(Using Scope annotations)**
+  - Use `@Singleton` to instantiate a `type` **only once** (per component).  
+  - Scope a `@Component` and it's corresponding `@Inject constructor enabled concrete type` (or) `@Binds abstract method` (or) `@Provides method`,
+    with any Scoped annotation (here @Singleton) to instruct `how many instances of the "type"` can exist `for each instance of similarly scoped "@Component"`.
+    
+ 
