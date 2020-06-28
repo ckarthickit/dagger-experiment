@@ -4,10 +4,14 @@
 
 - Each `@Component` has its own **bindings & Scope**.
 
-- 3 most common bindings
+- 4 most common bindings
   1. `@Inject` Constructor which is the most preferred binding
   2. `@Binds` abstract method that maps a Concrete-Type to an Abstract-Type (that classed depend upon)
   3. `@Provides` is generally used for mapping Concrete-Types that are third-party (or) external to Abstract-Types  
+  4. `@BindsInstance` is generally used on a Component/SubComponent Builder method to bind a concrete type with the 
+     Component/Sub-component instance.
+       - This is most commonly used to bind primitive types (like **int, float, etc.,**) to component instance.
+       - If more than one value of the same primitive type needs to be bound, then we would need a Qualifier annotation.
 
 - `Provider Methods` should be preferred when we are injecting `third-party` classes
     - Provider Methods **CAN ONLY BE** defined in `Module`, and the corresponding `Module` should be mapped to `Component`.
@@ -129,13 +133,50 @@ There are multiple ways in which we can connect 2 components together.
     }
     ```
 
-2. `@Subcomponent Comp2` can be made **sub-component**.   `(See ex9)`
-    And corresponding **provision method** needs to be exposed in `@Component Comp1` to create a connection.
-    > Any Module inside sub-component `Comp2` which needs runtime values, must be passed as parameter to the 
-    > **provision method** declared in `Comp1`. 
-    
-    > Comp2 implementation will become **private inner class** of Comp1 implementation. 
-    > So any dependencies / rumtime params that Comp2 need must be passed via Comp1's corresponding provision method.
+2. `@Subcomponent Comp2` can be made **sub-component**. 
+   
+   1.  `Method1 (See ex9)`
+        - And corresponding **provision method** needs to be exposed in `@Component Comp1` to create a connection. 
+        > Any Module inside sub-component `Comp2` which needs runtime values, must be passed as parameter to the 
+        > **provision method** declared in `Comp1`. 
+        
+        > Comp2 implementation will become **private inner class** of Comp1 implementation. 
+        > So any dependencies / runtime params that Comp2 need must be passed via Comp1's corresponding provision method.
+
+        ```java
+        interface Comp1 {
+           Comp2 newComp2(Comp2Module2 module2Dep);
+        }
+        ```
+
+   2. `Method1 (See ex10)`:
+      - Explicitly declare `@Subcomponent.Builder` for `Comp2`.
+      - Add **provision method** for the SubComponentBuilder in `@Component Comp1`.
+      
+      ```java
+        @Component
+        public interface Comp1 {
+            Comp2.Builder comp2Builder();
+        }
+      ```
+      
+   3. `Method3` (TODO)
+     - Make `@Subcomponent Comp2` as Sub-Component of a Module `@Module Comp2.InstallModule`.
+     - Add `Comp2InstallModule` as a module of `@Component Comp1`.
+      
+     ```java
+     @Component(modules = {Comp1Module1.class, Comp2.InstallModule.class})
+     interface Comp1 {
+     }
+     
+     @Subcomponent(modules={Comp2Module1.class})
+     interface Comp2 {
+       
+        @Module(subcomponents = {Comp2.class})
+        interface  InstallModule{
+        }
+     }
+     ```
 
 
 ## References:
