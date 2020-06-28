@@ -178,6 +178,12 @@ There are multiple ways in which we can connect 2 components together.
      }
      ```
 
+## `@Component/Subcomponent.Builder` vs `@Component/Subcomponent.Factory` 
+
+|  Component Builder    |   Component Factory   |
+|     ---               |       ---             |
+| Has a series of builder methods for `Module with no default constructir` and `dependency Component/Subcomponent`. | Has a single method that accepts all the dependency as parameter. |
+| If the configuration is wrong, we get exception at run-tie | Since here the dependencies are part of parameter list, we get compile time error if there is a mismatch in runtime-parameters. | 
 
 ## References:
 
