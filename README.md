@@ -32,10 +32,12 @@
 
 - `@Inject` constructors (that doesn't have any other injected params) can generally be accessible by any component.  
   - It is the Scope that restricts it's Binding to a "particular component".    
-    > Component scoped with "scope1" may not reference bindings with different scopes "scope2".  
+    > Component scoped with "scope1" may not reference bindings with different scopes "scope2".
+    > **This is the very reason, we shouldn't be using the same scope on multiple components**.  
 
-  - If "another Component" has to use this dependency, then it has to add the "particular component" as it's `dependency` and  
-    **expose a provision method** in the "particular component".  
+  - If "another Component" has to use this dependency, then
+     - it has to add the "particular component" as it's `dependency` and  **expose a provision method** in the "particular component".
+     - or declare itself as `@Subcomponent`  
     > See Below for more details on **Multiple Components + Multiple Scopes , Component Dependencies. (ex8)**
 ---
 
@@ -97,7 +99,7 @@
 
 - Use `@Singleton` to instantiate a `type` **only once** (per component).  
 - Scope a `@Component` and it's corresponding `@Inject constructor enabled concrete type` (or) `@Binds abstract method` (or) `@Provides method`,
-  with any Scoped annotation (here @Singleton) to instruct `how many instances of the "type"` can exist `for each instance of similarly scoped "@Component"`.
+  with any Scoped annotation (here @Singleton) to instruct `how many instances of the "type"` can exist per component.
     
 ## Multiple Components + Multiple Scopes , Component Dependencies. (ex8)
 
@@ -111,8 +113,30 @@
     >Error: @Component.Builder is missing setters for required modules or components.
 
 > **NOTE: Please note that the dependencies of "another-component" CAN ONLY BE ACCESSED by "the-component" via PROVISION METHODS declared in
-> "another-component".  
+> "another-component" in this dependency approach.  
 > Else we would get Error: "the-component" may not reference bindings with different scopes.**
+
+## Connecting 2 components together
+
+There are multiple ways in which we can connect 2 components together.
+
+1. `@Component Comp2` can mention `@Component Comp1` as it's **dependency**.  
+    And `Comp1` has to expose **provision methods** for each dependency that it exposes to other components such as `Comp2`. 
+
+    ```java
+    @Component(dependencies = {Comp1.class}, modules = {Comp2Module1.class, Comp2Module2.class})
+    public interface Comp2 {
+    }
+    ```
+
+2. `@Subcomponent Comp2` can be made **sub-component**.   `(See ex9)`
+    And corresponding **provision method** needs to be exposed in `@Component Comp1` to create a connection.
+    > Any Module inside sub-component `Comp2` which needs runtime values, must be passed as parameter to the 
+    > **provision method** declared in `Comp1`. 
+    
+    > Comp2 implementation will become **private inner class** of Comp1 implementation. 
+    > So any dependencies / rumtime params that Comp2 need must be passed via Comp1's corresponding provision method.
+
 
 ## References:
 
