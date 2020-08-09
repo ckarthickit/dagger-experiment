@@ -189,8 +189,12 @@ There are multiple ways in which we can connect 2 components together.
 
 - [Dagger2 Beginner Tutorial - Android][dagger2_beginner_tutorial_android]
 - [Dagger2 - Injecting ViewModels on Android][dagger2_injecting_view_models]
+- [Dagger2 - Injecting ViewModels on Android Using FactoryProvider][dagger2_injecting_view_models2]
+- [Dagger2 - Kotlin Best Practices][dagger2_kotlin_best_practices]
 
 ---
 
 [dagger2_beginner_tutorial_android]: https://www.youtube.com/playlist?list=PLrnPJCHvNZuA2ioi4soDZKz8euUQnJW65
 [dagger2_injecting_view_models]: https://proandroiddev.com/injecting-viewmodel-from-hard-to-easy-c06c0fe1c8e9
+[dagger2_injecting_view_models2]: https://medium.com/@marco_cattaneo/android-viewmodel-and-factoryprovider-good-way-to-manage-it-with-dagger-2-d9e20a07084c
+[dagger2_kotlin_best_practices]: https://github.com/google/dagger/issues/900
