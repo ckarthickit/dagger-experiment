@@ -188,7 +188,9 @@ There are multiple ways in which we can connect 2 components together.
 ## References:
 
 - [Dagger2 Beginner Tutorial - Android][dagger2_beginner_tutorial_android]
+- [Dagger2 - Injecting ViewModels on Android][dagger2_injecting_view_models]
 
 ---
 
 [dagger2_beginner_tutorial_android]: https://www.youtube.com/playlist?list=PLrnPJCHvNZuA2ioi4soDZKz8euUQnJW65
+[dagger2_injecting_view_models]: https://proandroiddev.com/injecting-viewmodel-from-hard-to-easy-c06c0fe1c8e9
